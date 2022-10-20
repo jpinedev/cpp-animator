@@ -1,0 +1,25 @@
+# initializes the canvas, with top-left corner (200,70) and
+# dimensions 360x360
+canvas 360 360
+# declares a rectangle shape named R
+shape R rectangle
+# describes the motions of shape R, between two moments of animation:
+# t == tick
+# (x,y) == position
+# (w,h) == dimensions
+# (r,g,b) == color (with values between 0 and 255)
+#          t   x   y   w  h   r   g b
+keyframe R 1   0   130 50 100 255 0 0
+keyframe R 10  0   130 50 100 255 0 0
+keyframe R 50  100 230 50 100 255 0 0
+keyframe R 51  100 230 50 100 255 0 0
+keyframe R 70  100 230 25 100 255 0 0
+keyframe R 100 0   130 25 100 255 0 0
+
+shape C ellipse
+keyframe C 6  240 0 120 60 0 0 255
+keyframe C 20 240 0 120 60 0 0 255
+keyframe C 50 240 180 120 60 0 0 255
+keyframe C 70 240 300 120 60 0 170 85
+keyframe C 80 240 300 120 60 0 255 0
+keyframe C 100 240 300 120 60 0 255 0

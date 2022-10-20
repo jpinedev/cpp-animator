@@ -1,0 +1,11 @@
+<svg  xmlns="http://www.w3.org/2000/svg"  width="480"  height="360"  version="1.1">
+<rect  x="0"  y="0"  width="480"  height="360"  fill="rgb(100, 200, 255)"  visibility="visible">
+<animate  attributeName="fill"  begin="4000ms"  dur="4000ms"  from="rgb(100, 200, 255)"  to="rgb(200, 100, 100)"  fill="freeze"></animate>
+<animate  attributeName="fill"  begin="8000ms"  dur="4000ms"  from="rgb(200, 100, 100)"  to="rgb(0, 0, 50)"  fill="freeze"></animate>
+</rect>
+<ellipse  cx="240"  cy="-50"  rx="25"  ry="25"  fill="rgb(255, 255, 0)"  visibility="visible">
+<animate  attributeName="cy"  begin="0ms"  dur="3000ms"  from="-50"  to="150"  fill="freeze"></animate>
+<animate  attributeName="cy"  begin="3000ms"  dur="3000ms"  from="150"  to="290"  fill="freeze"></animate>
+<animate  attributeName="cy"  begin="6000ms"  dur="4000ms"  from="290"  to="410"  fill="freeze"></animate>
+</ellipse>
+</svg>
