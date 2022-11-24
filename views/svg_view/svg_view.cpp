@@ -76,6 +76,8 @@ void views::svg_view::play(Animation* anim) const {
     
     this->out << shape_begin(animatedShape.type, last_keyframe->frame, last_keyframe->tick == 0);
 
+    this->out << svg::set_visibility(last_keyframe->tick * this->tickrate, true);
+
     for (auto curr_keyframe = std::next(last_keyframe); curr_keyframe != animatedShape.keyframes.end(); ++curr_keyframe) {
       const Keyframe& last = *last_keyframe;
       const Keyframe& curr = *curr_keyframe;

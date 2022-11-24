@@ -8,28 +8,51 @@
 
 using namespace std;
 
+enum OutputType {Text, SVG};
+
 void usage_msg(char* prog_name);
 
 int main(int argc, char* argv[]) {
-  string file_path;
+  OutputType output_type;
+
+  string infile_path;
   ifstream infile;
+
+  string outfile_path;
+  ofstream outfile;
+  ostream* out = &cout;
 
   Animation* anim;
   views::View* view;
 
   string err_msg;
 
-  if (argc == 1 || argc == 2 && argv[1] == "-h") {
+  if (argc == 1 || (argc == 2 && strcmp(argv[1], "-h") == 0) || !(argc == 5 || argc == 7)) {
     usage_msg(argv[0]);
     exit(1);
   }
 
   int curr_arg = 1;
-  while (argv[curr_arg]) {
-    
+  if (strcmp(argv[curr_arg++], "-v") != 0) {
+    usage_msg(argv[0]);
+    exit(1);
   }
 
-  infile.open(file_path, ifstream::in);
+  if (strcmp(argv[curr_arg], "text") == 0) output_type = Text;
+  else if (strcmp(argv[curr_arg], "svg") == 0) output_type = SVG;
+  else {
+    usage_msg(argv[0]);
+    exit(1);
+  }
+  ++curr_arg;
+
+  if (strcmp(argv[curr_arg++], "-i") != 0) {
+    usage_msg(argv[0]);
+    exit(1);
+  }
+
+  infile_path = argv[curr_arg++];
+  infile.open(infile_path, ifstream::in);
 
   anim = animation_builder::build(&infile, &err_msg);
 
@@ -42,8 +65,26 @@ int main(int argc, char* argv[]) {
   cout << "Loaded file with 0 errors." << endl;
 #endif
 
-  // views::View* view = new views::TextView(cout);
-  view = new views::SVGView(cout, 100);
+  if (argc > 5) {
+    if (argc != 7 || strcmp(argv[curr_arg++], "-o") != 0) {
+      usage_msg(argv[0]);
+      exit(1);
+    }
+
+    outfile_path = argv[curr_arg++];
+    outfile.open(outfile_path, ofstream::out);
+    out = &outfile;
+  }
+
+
+  switch (output_type) {
+    case Text:
+      view = new views::TextView(*out);
+      break;
+    case SVG:
+      view = new views::SVGView(*out, 100);
+      break;
+  }
 
   view->play(anim);
 

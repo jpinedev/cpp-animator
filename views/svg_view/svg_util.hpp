@@ -18,6 +18,7 @@ namespace svg {
 
   std::string set(std::string attributeName, int msBegin, std::string value);
   std::string set(std::string attributeName, int msBegin, int value);
+  std::string set_visibility(int msBegin, bool visible);
 
   std::string animate(std::string attributeName, int msBegin, int msDuration, std::string from, std::string to);
   std::string animate(std::string attributeName, int msBegin, int msDuration, int from, int to);

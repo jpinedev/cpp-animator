@@ -33,7 +33,7 @@ std::string rgb(int r, int g, int b) {
 
 
 std::string svg::attribute(std::string name, std::string value) {
-  return ' ' + name + '=' + '"' + value + '"';
+  return name + '=' + '"' + value + '"';
 }
 std::string svg::attribute(std::string name, int value) {
   return attribute(name, std::to_string(value));
@@ -66,6 +66,17 @@ std::string svg::set(std::string attributeName, int msBegin, std::string value) 
 
 std::string svg::set(std::string attributeName, int msBegin, int value) {
   return set(attributeName, msBegin, std::to_string(value));
+}
+
+std::string svg::set_visibility(int msBegin, bool visible) {
+  return tag(
+    "set",
+    {
+      attribute("attributeName", "visibility"),
+      attribute_ms("begin", msBegin),
+      attribute("to", (visible ? "visible" : "hidden"))
+    }
+  );
 }
 
 
