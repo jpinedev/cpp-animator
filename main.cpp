@@ -38,13 +38,14 @@ int main(int argc, char* argv[]) {
     exit(1);
   }
 
-  if (strcmp(argv[curr_arg], "text") == 0) output_type = Text;
-  else if (strcmp(argv[curr_arg], "svg") == 0) output_type = SVG;
+  string type_text = argv[curr_arg++];
+  to_lower(type_text);
+  if (type_text.compare("text") == 0) output_type = Text;
+  else if (type_text.compare("svg") == 0) output_type = SVG;
   else {
     usage_msg(argv[0]);
     exit(1);
   }
-  ++curr_arg;
 
   if (strcmp(argv[curr_arg++], "-i") != 0) {
     usage_msg(argv[0]);
